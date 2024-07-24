@@ -1,0 +1,15 @@
+$body-bg: transparentize($light-blue, 0.8);
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+html {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+}
+
+body {
+    background-image: url("./assets/images/bg-sidebar-mobile.svg");
+    background-repeat: no-repeat;
+    background-position: top center;
+}

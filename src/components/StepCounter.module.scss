@@ -1,0 +1,15 @@
+.counter {
+    width: 2.25rem;
+    height: 2.25rem;
+    display: grid;
+    place-items: center;
+}
+
+.idleCounter {
+    color: $alabaster;
+    border-color: $light-gray;
+}
+
+.activeCounter {
+    background-color: $light-blue;
+}
