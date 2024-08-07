@@ -1,0 +1,144 @@
+$switch-height: 1.5rem;
+$switch-width: $switch-height * 2;
+$switch-margin: 0.6rem;
+
+.textInput {
+    cursor: pointer;
+    padding: 0.5rem 0.75rem !important;
+    border-color: transparentize($light-gray, 0.75);
+    border-width: 1px;
+    border-radius: 0.25rem;
+    color: $marine-blue;
+    font-weight: 500;
+
+    &:focus {
+        outline: 1px solid transparentize($purplish-blue, 0.4);
+    }
+
+    &:hover {
+        outline: 1px solid transparentize($purplish-blue, 0.2);
+    }
+
+    &::placeholder {
+        color: $cool-gray;
+    }
+}
+
+.planName, .addonName {
+    color: $marine-blue;
+    font-weight: 700;
+}
+
+.planPrice {
+    color: $cool-gray;
+    font-size: 0.885rem;
+}
+
+.addonDesc {
+    color: $cool-gray;
+    font-size: 0.8rem;
+}
+
+.addonPrice {
+    color: $purplish-blue;
+    margin-left: auto;
+    font-size: 0.825rem;
+    font-weight: 500;
+}
+
+.textLabel {
+    color: $marine-blue;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+}
+
+.divLabel {
+    border: 1px solid $light-gray;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:has( > input[type="radio"]:focus, > input[type="checkbox"]:focus) {
+        outline: 1px solid transparentize($purplish-blue, 0.2);
+    }
+
+    &:has( > input[type="radio"]:checked, > input[type="checkbox"]:checked) {
+        outline: 1px solid transparentize($purplish-blue, 0.2);
+        background-color: transparentize($light-blue, 0.85);
+    }
+
+    &:hover {
+        outline: 1px solid transparentize($purplish-blue, 0.2);
+    }
+
+    input[type="checkbox"]::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+        background-color: inherit;
+        border-radius: 4px;
+        border: 1px solid gray;
+    }
+
+    input[type="checkbox"]:checked::before {
+        background: url("../../assets/images/icon-checkmark.svg"), $purplish-blue;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
+
+.switchContainer {
+    background-color: transparentize($light-blue, 0.85);
+    padding: 0.75rem 0;
+    border-radius: 0.5rem;
+}
+
+.switch {
+    cursor: pointer;
+
+    span {
+        font-weight: 500;
+        transition-duration: 0.3s;
+        color: $cool-gray;
+    }
+
+    span:first-child, &:has(input:checked) span:last-child {
+        color: $marine-blue;
+    }
+
+    &:has(input:checked) span:first-child {
+        color: $cool-gray;
+    }
+
+    input {
+        appearance: none;
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        vertical-align: middle;
+        background-color: $marine-blue;
+        height: $switch-height;
+        width: $switch-width;
+        border-radius: $switch-height;
+        margin: 0 1rem;
+        cursor: pointer;
+    }
+    
+    input::before {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: calc($switch-margin / 2);
+        width: $switch-height - $switch-margin;
+        height: $switch-height - $switch-margin;
+        background-color: $white;
+        border-radius: $switch-height;
+        transition-duration: 0.3s;
+    }
+
+    input:checked::before {
+        transform: translateX($switch-width - $switch-height);
+    }
+}

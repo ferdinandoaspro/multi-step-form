@@ -12,4 +12,10 @@ body {
     background-image: url("./assets/images/bg-sidebar-mobile.svg");
     background-repeat: no-repeat;
     background-position: top center;
+    font-family: "Ubuntu", sans-serif;
+}
+
+main {
+    margin: auto;
+    width: min(92%, 60rem);
 }

@@ -8,10 +8,16 @@
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
     border: none;
+    font-weight: 700;
+    transition: 0.3s;
 
     &:first-child {
         background-color: inherit;
         color: $cool-gray;
+
+        &:hover {    
+            color: $marine-blue;
+        }
     }
 
     &:active {
@@ -20,5 +26,10 @@
 
     &[type="submit"] {
         background-color: $purplish-blue;
+
+        &:hover {
+            background-color: transparentize($purplish-blue, 0.2);
+            color: $alabaster;
+        }
     }
 }

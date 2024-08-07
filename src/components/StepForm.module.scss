@@ -2,26 +2,23 @@
     background-color: $white;
     border-radius: 0.5rem;
     padding: 2.5rem 1.25rem;
-    margin: 0 1rem;
 
-    input[type="text"], input[type="tel"], input[type="email"] {
-        height: 2.5rem;
-        border-color: $light-gray;
-    }
-
-    input[type="radio"] {
+    input[type="radio"], input[type="checkbox"] {
         -webkit-appearance: none;
         appearance: none;
     }
 
-    input:placeholder {
-        color: $cool-gray;
+    fieldset {
+        display: contents;
     }
 }
 
 .legend {
     color: $marine-blue;
-    font-family: "Ubuntu", sans-serif;
     font-weight: 700;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+}
+
+.description {
+    color: $cool-gray;
 }

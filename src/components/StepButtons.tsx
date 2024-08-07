@@ -3,11 +3,12 @@ import styles from "./StepButtons.module.scss"
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     text: string;
-    handleClick: () => void
+    handleClick: () => void;
+    hidden?: boolean
 }
 
-const Button = ({text, handleClick, type = "button"}: ButtonProps) => {
-    return <button onClick={handleClick} className={styles.buttons} type={type}>{text}</button>
+const Button = ({text, handleClick, type = "button", hidden = false}: ButtonProps) => {
+    return <button onClick={handleClick} className={`${hidden ? "invisible" : styles.buttons}`} type={type} aria-hidden={hidden}>{text}</button>
 }
 
 interface StepButtonProps {
@@ -26,7 +27,7 @@ const StepButtons = ({stepCount, setStepCount, stepNumber}: StepButtonProps) => 
 
     return (
         <div className={`fixed-bottom d-flex justify-content-between p-3 ${styles.buttonSection}`}>
-            <Button text={"Go back"} handleClick={handlePrevious}/>
+            <Button text={"Go back"} handleClick={handlePrevious} hidden={isFirstStep}/>
             <Button text={isLastStep ? "Confirm" : "Next step"} handleClick={handleNext} type={isLastStep ? "submit" : "button"}/>
         </div>
     )

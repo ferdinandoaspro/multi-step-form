@@ -12,9 +12,11 @@ const StepForm = () => {
     return (
         <>
         <StepCounter stepInfo={stepInfo} stepCount={stepCount}/>
-        <form onSubmit={handleSubmit} className={styles.form}>
-            <h1 className={styles.legend}>{stepInfo[stepCount].legend}</h1>
-            <p>{stepInfo[stepCount].description}</p>
+        <form onSubmit={handleSubmit} className={`${styles.form} d-flex flex-column gap-3`}>
+            <div>
+                <h1 className={styles.legend}>{stepInfo[stepCount].legend}</h1>
+                <p className={styles.description}>{stepInfo[stepCount].description}</p>
+            </div>
             {steps[stepCount]}
             <StepButtons stepCount={stepCount} setStepCount={setStepCount} stepNumber={stepInfo.length}/>
         </form>
