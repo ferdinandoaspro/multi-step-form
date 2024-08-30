@@ -1,4 +1,4 @@
-$body-bg: transparentize($light-blue, 0.8);
+$body-bg: transparentize($pastel-blue, 0.85);
 
 @import "node_modules/bootstrap/scss/bootstrap";
 
@@ -13,9 +13,10 @@ body {
     background-repeat: no-repeat;
     background-position: top center;
     font-family: "Ubuntu", sans-serif;
+    height: 100%;
 }
 
 main {
     margin: auto;
-    width: min(92%, 60rem);
+    width: min(91%, 60rem);
 }

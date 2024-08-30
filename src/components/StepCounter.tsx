@@ -32,7 +32,7 @@ interface StepCounterProps {
 const StepCounter = ({stepInfo, stepCount} : StepCounterProps) => {
     return (
         <aside>
-            <ul className="list-unstyled d-flex flex-row justify-content-center gap-3 my-4">
+            <ul className="list-unstyled d-flex flex-row justify-content-center gap-3 py-4">
                 {stepInfo.map((step, key) => <Step key={key + 1} count={key + 1} name={step.name} isCurrent={key === stepCount}/>)}
             </ul>
         </aside>

@@ -2,6 +2,8 @@ $switch-height: 1.5rem;
 $switch-width: $switch-height * 2;
 $switch-margin: 0.6rem;
 
+// Step one
+
 .textInput {
     cursor: pointer;
     padding: 0.5rem 0.75rem !important;
@@ -23,6 +25,14 @@ $switch-margin: 0.6rem;
         color: $cool-gray;
     }
 }
+
+.textLabel {
+    color: $marine-blue;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+// Step two and three
 
 .planName, .addonName {
     color: $marine-blue;
@@ -46,12 +56,6 @@ $switch-margin: 0.6rem;
     font-weight: 500;
 }
 
-.textLabel {
-    color: $marine-blue;
-    font-size: 0.85rem;
-    margin-bottom: 0.25rem;
-}
-
 .divLabel {
     border: 1px solid $light-gray;
     border-radius: 0.5rem;
@@ -65,7 +69,7 @@ $switch-margin: 0.6rem;
 
     &:has( > input[type="radio"]:checked, > input[type="checkbox"]:checked) {
         outline: 1px solid transparentize($purplish-blue, 0.2);
-        background-color: transparentize($light-blue, 0.85);
+        background-color: transparentize($pastel-blue, 0.85);
     }
 
     &:hover {
@@ -90,7 +94,7 @@ $switch-margin: 0.6rem;
 }
 
 .switchContainer {
-    background-color: transparentize($light-blue, 0.85);
+    background-color: transparentize($pastel-blue, 0.85);
     padding: 0.75rem 0;
     border-radius: 0.5rem;
 }
@@ -140,5 +144,54 @@ $switch-margin: 0.6rem;
 
     input:checked::before {
         transform: translateX($switch-width - $switch-height);
+    }
+}
+
+// Step four
+
+.breakdownContainer {
+    color: $cool-gray;
+
+    .breakdownDetails {
+        background-color: transparentize($pastel-blue, 0.925);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        
+        .chosenPlanName, .chosenAddonPrice {
+            color: $marine-blue;
+            font-weight: 500;
+        }
+
+        .chosenPlanPrice {
+            color: $marine-blue;
+            font-weight: 700;
+        }
+
+        button {
+            border: none;
+            background: inherit;
+            text-align: start;
+            width: fit-content;
+            padding: 0.25rem 0.65rem;
+            padding-left: 0;
+            text-decoration: underline;
+            color: $cool-gray;
+            
+            &:hover {
+                cursor: pointer;
+                color: $purplish-blue;
+            }
+        }
+    }
+
+    .breakdownTotal {
+        padding: 1rem;
+        padding-bottom: 0;
+
+        .finalPrice {
+            color: $purplish-blue;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
     }
 }

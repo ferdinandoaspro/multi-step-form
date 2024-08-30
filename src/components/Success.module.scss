@@ -1,0 +1,15 @@
+.container {
+    background-color: $white;
+    border-radius: 0.5rem;
+    padding: 5rem 1.65rem;
+
+    .thanks {
+        color: $marine-blue;
+        font-weight: 700;
+    }
+
+    .message {
+        color: $cool-gray;
+        font-family: "Ubuntu", sans-serif;
+    }
+}

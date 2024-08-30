@@ -1,37 +1,88 @@
 import styles from "./Step.module.scss"
+import addons from "../../assets/addons.json"
+import { Dispatch, SetStateAction } from "react"
 
-const StepThree = () => {
+interface AddonOption {
+    name: string,
+    description: string,
+    price: {
+        monthly: number,
+        yearly: number
+    }
 
-    const addonLabel =  `${styles.divLabel} d-flex align-items-center`
+}
+
+interface LabelProps {
+    addon: AddonOption,
+    isYearly: boolean,
+    isChecked: boolean,
+    onChange: () => void
+}
+
+type Plan = {
+    name: string,
+    price: number
+}
+
+type Addon = Plan
+interface FormData {
+    name: string,
+    email: string,
+    phone: string,
+    plan: Plan,
+    yearly: boolean,
+    addons: Addon[]
+}
+
+interface StepThreeProps {
+    formData: FormData,
+    setFormData: Dispatch<SetStateAction<FormData>>
+}
+
+const Label = ({addon, isYearly, isChecked, onChange} : LabelProps) => {
+
+    const nameTag = addon.name.replace(" ", "-")
+    const addonLabel = `${styles.divLabel} d-flex align-items-center`
     const addonInfo = "ms-3 d-flex flex-column gap-1"
+    const price = isYearly ? `$${addon.price.yearly}/yr` : `$${addon.price.monthly}/mo`
 
     return (
-        <fieldset>
-            <label htmlFor="online-service" className={addonLabel}>
-                <input type="checkbox" name="online-service" id="online-service" />
-                <div className={addonInfo}>
-                    <span className={styles.addonName}>Online service</span>
-                    <span className={styles.addonDesc}>Access to multiplayer games</span>
-                </div>
-                <span className={styles.addonPrice}>+$1/mo</span>
-            </label>
-            <label htmlFor="larger-storage" className={addonLabel}>
-                <input type="checkbox" name="larger-storage" id="larger-storage" />
-                <div className={addonInfo}>
-                    <span className={styles.addonName}>Larger storage</span>
-                    <span className={styles.addonDesc}>Extra 1TB of storage space</span>
-                </div>
-                <span className={styles.addonPrice}>+$2/mo</span>
-            </label>
-            <label htmlFor="custom-profile" className={addonLabel}>
-                <input type="checkbox" name="custom-profile" id="custom-profile" />
-                <div className={addonInfo}>
-                    <span className={styles.addonName}>Customizable profile</span>
-                    <span className={styles.addonDesc}>Custom theme on your profile</span>
-                </div>
-                <span className={styles.addonPrice}>+$2/mo</span>
-            </label> 
-        </fieldset>
+    <label htmlFor={nameTag} className={addonLabel}>
+        <input type="checkbox" name={nameTag} id={nameTag} checked={isChecked} onChange={onChange}/>
+        <div className={addonInfo}>
+            <span className={styles.addonName}>{addon.name}</span>
+            <span className={styles.addonDesc}>{addon.description}</span>
+        </div>
+        <span className={styles.addonPrice}>{price}</span>
+    </label>
+    )
+}
+
+const StepThree = ({formData, setFormData} : StepThreeProps) => {
+
+    const isYearly = formData.yearly
+    const formAddons = formData.addons.map(addon => addon.name)
+
+    const handleCheck = (addonName: string) => {
+        const selectedAddon = addons.find(addon => addon.name === addonName)
+        if (!selectedAddon) return
+        const addonPrice = isYearly ? selectedAddon.price.yearly : selectedAddon.price.monthly
+
+        const addonsList = !formAddons.includes(addonName)
+            ? formData.addons.concat({ name: addonName, price: addonPrice})
+            : formData.addons.filter((obj: Addon) => obj.name !== addonName)
+
+        setFormData((prev: FormData) => ({ ...prev, addons: addonsList }))
+    }
+    
+    return (
+        <>
+        
+        {addons.map((addon, index) => {
+            const isChecked = formAddons.includes(addon.name)
+            return <Label key={index} addon={addon} isYearly={isYearly} isChecked={isChecked} onChange={() => handleCheck(addon.name)}/>
+        })}
+        </>
     )
 }
 

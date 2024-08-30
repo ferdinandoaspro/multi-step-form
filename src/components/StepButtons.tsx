@@ -8,22 +8,23 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = ({text, handleClick, type = "button", hidden = false}: ButtonProps) => {
-    return <button onClick={handleClick} className={`${hidden ? "invisible" : styles.buttons}`} type={type} aria-hidden={hidden}>{text}</button>
+    return <button onClick={handleClick} className={`${hidden ? "invisible" : styles.buttons}`} type={type} disabled={hidden} aria-hidden={hidden}>{text}</button>
 }
 
 interface StepButtonProps {
     stepCount: number;
     setStepCount: Dispatch<SetStateAction<number>>;
+    setSuccess: Dispatch<SetStateAction<boolean>>;
     stepNumber: number
 }
 
-const StepButtons = ({stepCount, setStepCount, stepNumber}: StepButtonProps) => {
+const StepButtons = ({stepCount, setStepCount, setSuccess, stepNumber}: StepButtonProps) => {
 
     const isFirstStep = stepCount === 0
     const isLastStep = stepCount === stepNumber - 1
 
     const handlePrevious = () => isFirstStep ? null : setStepCount(prev => prev - 1)
-    const handleNext = () => isLastStep ? null : setStepCount(prev => prev + 1)
+    const handleNext = () => isLastStep ? setSuccess(true) : setStepCount(prev => prev + 1)
 
     return (
         <div className={`fixed-bottom d-flex justify-content-between p-3 ${styles.buttonSection}`}>
