@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, Dispatch, SetStateAction } from "react"
+import { ButtonHTMLAttributes } from "react"
 import styles from "./StepButtons.module.scss"
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -8,28 +8,32 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = ({text, handleClick, type = "button", hidden = false}: ButtonProps) => {
-    return <button onClick={handleClick} className={`${hidden ? "invisible" : styles.buttons}`} type={type} disabled={hidden} aria-hidden={hidden}>{text}</button>
+    return <button
+                onClick={handleClick}
+                className={`${hidden ? "invisible" : styles.buttons}`}
+                type={type}
+                disabled={hidden}
+                aria-hidden={hidden}>
+                    {text}
+            </button>
 }
 
-interface StepButtonProps {
-    stepCount: number;
-    setStepCount: Dispatch<SetStateAction<number>>;
-    setSuccess: Dispatch<SetStateAction<boolean>>;
-    stepNumber: number
+interface ButtonControls {
+    isFirstStep: boolean;
+    isLastStep: boolean;
+    handlePrevious: () => void | null,
+    handleNext: () => void
 }
 
-const StepButtons = ({stepCount, setStepCount, setSuccess, stepNumber}: StepButtonProps) => {
+const StepButtons = ({buttonControls}: {buttonControls : ButtonControls}) => {
 
-    const isFirstStep = stepCount === 0
-    const isLastStep = stepCount === stepNumber - 1
-
-    const handlePrevious = () => isFirstStep ? null : setStepCount(prev => prev - 1)
-    const handleNext = () => isLastStep ? setSuccess(true) : setStepCount(prev => prev + 1)
+    const {isFirstStep, isLastStep, handlePrevious, handleNext} = buttonControls
 
     return (
         <div className={`fixed-bottom d-flex justify-content-between p-3 ${styles.buttonSection}`}>
             <Button text={"Go back"} handleClick={handlePrevious} hidden={isFirstStep}/>
-            <Button text={isLastStep ? "Confirm" : "Next step"} handleClick={handleNext} type={isLastStep ? "submit" : "button"}/>
+            {isLastStep && <Button text={"Confirm"} handleClick={handleNext} type={"submit"}/>}
+            {!isLastStep && <Button text={"Next step"} handleClick={handleNext} type={"button"}/>}
         </div>
     )
 }

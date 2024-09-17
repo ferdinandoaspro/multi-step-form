@@ -2,6 +2,15 @@ $switch-height: 1.5rem;
 $switch-width: $switch-height * 2;
 $switch-margin: 0.6rem;
 
+@mixin error {
+    color: $strawberry-red;
+    font-weight: 700;
+}
+
+@mixin invalidInput($border-size, $alpha) {
+    outline: $border-size solid transparentize($strawberry-red, $alpha);
+}
+
 // Step one
 
 .textInput {
@@ -29,7 +38,19 @@ $switch-margin: 0.6rem;
 .textLabel {
     color: $marine-blue;
     font-size: 0.875rem;
-    margin-bottom: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+.textLabel:has(span.errorLabel) + .textInput {
+    @include invalidInput(1px, 0.2);
+
+    &:hover, &:focus {
+        @include invalidInput(2px, 0.2)
+    }
+}
+
+.errorLabel {
+    @include error;
 }
 
 // Step two and three
@@ -76,6 +97,14 @@ $switch-margin: 0.6rem;
         outline: 1px solid transparentize($purplish-blue, 0.2);
     }
 
+    &:has( ~ span.errorPlan) {
+        @include invalidInput(1px, 0.2);
+
+        &:hover, &:focus {
+            @include invalidInput(2px, 0.2)
+        }
+    }
+
     input[type="checkbox"]::before {
         content: "";
         display: block;
@@ -91,6 +120,10 @@ $switch-margin: 0.6rem;
         background-position: center;
         background-repeat: no-repeat;
     }
+}
+
+.errorPlan {
+    @include error;
 }
 
 .switchContainer {

@@ -34,9 +34,15 @@ interface LabelProps {
     isSelected: boolean
 }
 
+type Errors = {
+    [key: string] : string
+}
+
 interface StepTwoProps {
     formData: FormData,
     setFormData: Dispatch<SetStateAction<FormData>>,
+    errors: Errors,
+    setErrors: Dispatch<SetStateAction<Errors>>,
 }
 
 const Label = ({planOption, handleChange, isYearly, isSelected} : LabelProps) => {
@@ -57,25 +63,38 @@ const Label = ({planOption, handleChange, isYearly, isSelected} : LabelProps) =>
                     {price}
                 </span>
             </div>
-            <input type="radio" name="plan" id={planOption.name} value={planOption.name}
-            checked={isSelected} onChange={handleChange} required/>
+            <input
+                type="radio"
+                name="plan"
+                id={planOption.name}
+                value={planOption.name}
+                checked={isSelected}
+                onChange={handleChange}
+                required/>
         </label>
     )
 }
 
-const StepTwo = ({formData, setFormData} : StepTwoProps) => {
+const StepTwo = ({formData, setFormData, errors, setErrors} : StepTwoProps) => {
 
     const switchContainer = `${styles.switchContainer} d-flex flex-row justify-content-center mt-2`
 
     const isYearly = formData.yearly;
     const handleSelect = (e: ChangeEvent<HTMLInputElement>) => {
-            setFormData(prev => ({
-                ...prev, 
-                plan: {
-                    name: e.target.value,
-                    price: prev.plan.price
-                }
-            }))
+        setFormData(prev => ({
+            ...prev, 
+            plan: {
+                name: e.target.value,
+                price: prev.plan.price
+            }
+        }))
+        if (e.target.checkValidity()) {
+            setErrors(currentErrors => {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const {[e.target.name]:_, ...rest} = currentErrors
+                return rest
+            })
+        }
     }
     const handleSwitch = (e: ChangeEvent<HTMLInputElement>) => {
         const yearlyInput = e.target.checked
@@ -93,6 +112,7 @@ const StepTwo = ({formData, setFormData} : StepTwoProps) => {
                 return <Label key={index} planOption={planOption} handleChange={handleSelect} isYearly={isYearly} isSelected={isSelected}/>
             })
         }
+        {errors.plan && <span className={styles.errorPlan}>{errors.plan}</span>}
         <div className={switchContainer}>       
             <label className={styles.switch} htmlFor="yearly">
                 <span>Monthly</span>
