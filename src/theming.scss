@@ -29,11 +29,12 @@ main {
     width: 91%;
 
     @media (min-width: 768px) {
-        width: 43rem;
-        height: 36rem;
+        width: 44rem;
+        height: 32rem;
     }
 
     @media (min-width: 992px) {
         width: 53rem;
+        height: 37rem;
     }
 }

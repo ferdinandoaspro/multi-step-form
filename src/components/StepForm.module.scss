@@ -23,6 +23,10 @@
     color: $marine-blue;
     font-weight: 700;
     font-size: 1.5rem;
+
+    @media (min-width: 992px) {
+        font-size: 2rem;
+    }
 }
 
 .description {
