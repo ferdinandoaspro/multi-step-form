@@ -47,14 +47,14 @@ interface StepTwoProps {
 
 const Label = ({planOption, handleChange, isYearly, isSelected} : LabelProps) => {
 
-    const planLabel = `${styles.divLabel} d-flex flex-row align-items-center`
-    const planInfo = "mx-3 d-flex flex-column gap-1"
+    const planLabel = `${styles.divLabel} d-flex flex-row align-items-start gap-3 flex-lg-column gap-lg-0 align-items-lg-start`
+    const planInfo = `d-flex flex-column gap-1 mt-lg-4`
     const iconPath = new URL(`/src/assets/${planOption.icon}`, import.meta.url).href
     const price = isYearly ? `$${planOption.price.yearly}/yr` : `$${planOption.price.monthly}/mo`
 
     return (
         <label htmlFor={planOption.name} className={planLabel}>
-            <img src={iconPath} alt={`${planOption.name} plan icon`} />
+            <img src={iconPath} alt={`${planOption.name} plan icon`} className="pt-1"/>
             <div className={planInfo}>
                 <span className={styles.planName}>
                     {planOption.name}
@@ -62,6 +62,11 @@ const Label = ({planOption, handleChange, isYearly, isSelected} : LabelProps) =>
                 <span className={styles.planPrice}>
                     {price}
                 </span>
+                {
+                isYearly && <span className={styles.planDiscount}>
+                    2 months free
+                </span>
+                }
             </div>
             <input
                 type="radio"
@@ -106,12 +111,14 @@ const StepTwo = ({formData, setFormData, errors, setErrors} : StepTwoProps) => {
 
     return (
         <>
+        <div className="d-flex flex-column flex-lg-row gap-2 gap-lg-0 my-lg-3 justify-content-lg-between">
         {
             planOptions.map((planOption, index) => {
                 const isSelected = formData.plan.name === planOption.name
                 return <Label key={index} planOption={planOption} handleChange={handleSelect} isYearly={isYearly} isSelected={isSelected}/>
             })
         }
+        </div>
         {errors.plan && <span className={styles.errorPlan}>{errors.plan}</span>}
         <div className={switchContainer}>       
             <label className={styles.switch} htmlFor="yearly">

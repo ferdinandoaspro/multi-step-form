@@ -92,7 +92,14 @@ const useForm = () => {
 
         const errorList: {[key: string] : string} = {}
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-        const phonePattern = /^(\+\d{1,3})?\d{10}$/
+
+        function isValidTel (value: number | bigint) {
+            const local = window.navigator.language
+            const formatter = new Intl.NumberFormat(local)
+            const formattedNumber = formatter.format(value)
+            const isValid = formattedNumber === formatter.format(Number(formattedNumber))
+            return isValid
+        }
  
         if (!formData.name) {
             errorList.name = "This field is required"
@@ -108,7 +115,7 @@ const useForm = () => {
 
         if (!formData.phone) {
             errorList.phone = "This field is required"
-        } else if (!phonePattern.test(formData.phone)) {
+        } else if (!isValidTel(Number(formData.phone))) {
             errorList.phone = "Invalid number format"
         }
 
@@ -144,8 +151,15 @@ const useForm = () => {
             errors={errors}
             setErrors={setErrors}
             />,
-        <StepThree formData={formData} setFormData={setFormData}/>,
-        <StepFour formData={formData} setStepCount={setStepCount}/>]
+        <StepThree
+            formData={formData}
+            setFormData={setFormData}
+        />,
+        <StepFour
+            formData={formData}
+            setStepCount={setStepCount}
+        />
+    ]
 
     const buttonControls = {
         isFirstStep: stepCount === 0,

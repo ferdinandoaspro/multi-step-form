@@ -30,7 +30,7 @@ const StepButtons = ({buttonControls}: {buttonControls : ButtonControls}) => {
     const {isFirstStep, isLastStep, handlePrevious, handleNext} = buttonControls
 
     return (
-        <div className={`fixed-bottom d-flex justify-content-between p-3 ${styles.buttonSection}`}>
+        <div className={`d-flex justify-content-between p-3 p-md-0 ${styles.buttonSection}`}>
             <Button text={"Go back"} handleClick={handlePrevious} hidden={isFirstStep}/>
             {isLastStep && <Button text={"Confirm"} handleClick={handleNext} type={"submit"}/>}
             {!isLastStep && <Button text={"Next step"} handleClick={handleNext} type={"button"}/>}

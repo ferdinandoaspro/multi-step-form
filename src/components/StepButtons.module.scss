@@ -1,5 +1,14 @@
 .buttonSection {
     background-color: $white;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    @media (min-width: 576px) {
+        position: static;
+        margin-top: auto;
+    }
 }
 
 .buttons {
@@ -11,12 +20,23 @@
     font-weight: 700;
     transition: 0.3s;
 
+    @media (min-width: 996px) {
+        padding: 0.5rem 1.25rem;
+    }
+
     &:first-child {
         background-color: inherit;
         color: $cool-gray;
 
         &:hover {    
             color: $marine-blue;
+        }
+    }
+
+    &:nth-child(2) {
+
+        &:hover {
+            background-color: transparentize($marine-blue, 0.1);
         }
     }
 

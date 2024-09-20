@@ -13,7 +13,7 @@ const StepForm = () => {
         handleSuccess()
     }
 
-    const styleForm = `${styles.form} d-flex flex-column gap-2`
+    const styleForm = `${styles.form} d-flex flex-column gap-2 gap-lg-3`
     return (
         <>
         <StepCounter stepInfo={stepInfo} stepCount={stepCount}/>
@@ -27,7 +27,6 @@ const StepForm = () => {
             <StepButtons buttonControls={buttonControls}/>
         </form>}
         </>
-        
     )
 }
 

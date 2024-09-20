@@ -39,6 +39,7 @@ $switch-margin: 0.6rem;
     color: $marine-blue;
     font-size: 0.875rem;
     padding-bottom: 0.25rem;
+    font-weight: 500;
 }
 
 .textLabel:has(span.errorLabel) + .textInput {
@@ -84,6 +85,15 @@ $switch-margin: 0.6rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 
+    @media (min-width: 768px) {
+        width: auto;
+        min-width: 90px;
+    }
+
+    @media (min-width: 992px) {
+        min-width: 140px;
+    }
+
     &:has( > input[type="radio"]:focus, > input[type="checkbox"]:focus) {
         outline: 1px solid transparentize($purplish-blue, 0.2);
     }
@@ -120,6 +130,11 @@ $switch-margin: 0.6rem;
         background-position: center;
         background-repeat: no-repeat;
     }
+}
+
+.planDiscount {
+    font-size: 0.8rem;
+    color: $marine-blue;
 }
 
 .errorPlan {
@@ -200,7 +215,7 @@ $switch-margin: 0.6rem;
             font-weight: 700;
         }
 
-        button {
+        .changeButton {
             border: none;
             background: inherit;
             text-align: start;
@@ -218,7 +233,7 @@ $switch-margin: 0.6rem;
     }
 
     .breakdownTotal {
-        padding: 1rem;
+        padding: 0.75rem;
         padding-bottom: 0;
 
         .finalPrice {

@@ -11,12 +11,29 @@ html {
 body {
     background-image: url("./assets/images/bg-sidebar-mobile.svg");
     background-repeat: no-repeat;
-    background-position: top center;
+    background-position: top;
+    background-size: 100% auto;
     font-family: "Ubuntu", sans-serif;
-    height: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    @media (min-width: 768px) {
+        background-image: none;
+        display: grid;
+        place-items: center;
+    }
 }
 
 main {
     margin: auto;
-    width: min(91%, 60rem);
+    width: 91%;
+
+    @media (min-width: 768px) {
+        width: 43rem;
+        height: 32rem;
+    }
+
+    @media (min-width: 992px) {
+        width: 52rem;
+    }
 }

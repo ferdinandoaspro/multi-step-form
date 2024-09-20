@@ -38,7 +38,7 @@ const PlanSection = ({plan, isYearly, onClick} : PlanProps) => {
         <div className="d-flex justify-content-between align-items-center">
             <div className="d-flex flex-column">
                 <span className={styles.chosenPlanName}>{plan.name} ({isYearly ? "Yearly" : "Monthly"})</span>
-                <button onClick={onClick}>
+                <button onClick={onClick} className={styles.changeButton}>
                     Change
                 </button>
             </div>
@@ -78,7 +78,7 @@ const StepFour = ({formData, setStepCount} : StepFourProps) => {
         <div className={breakdownContainer}>
             <div className={breakdownDetails}>
                 <PlanSection plan={formData.plan} isYearly={isYearly} onClick={handleClick(1)}/>
-                <hr/>
+                {formData.addons.length === 0 || <hr/>}
                 <AddonSection addonList={formData.addons} isYearly={isYearly}/>
             </div>
             <div className={breakdownTotal}>

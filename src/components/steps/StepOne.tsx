@@ -53,7 +53,7 @@ const StepOne = ({formData, setFormData, errors, setErrors} : StepOneProps) => {
     const labelSection = `${styles.textLabel} d-flex justify-content-between align-items-center`
 
     return (
-        <>
+    <div className ="d-flex flex-column gap-2 gap-md-3">
         <div className={inputSection}>
             <label htmlFor="name" className={labelSection}>
                 <span>Name</span>
@@ -105,12 +105,12 @@ const StepOne = ({formData, setFormData, errors, setErrors} : StepOneProps) => {
                 value={formData.phone}
                 onChange={handleInput}
                 onBlur={handleBlur}
-                maxLength={15}
+                maxLength={16}
                 required
                 aria-required
             />
         </div>
-        </>
+    </div>
     )
 }
 
