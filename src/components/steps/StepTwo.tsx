@@ -54,7 +54,7 @@ const Label = ({planOption, handleChange, isYearly, isSelected} : LabelProps) =>
 
     return (
         <label htmlFor={planOption.name} className={planLabel}>
-            <img src={iconPath} alt={`${planOption.name} plan icon`} className="pt-1"/>
+            <img src={iconPath} alt={`${planOption.name} plan icon`} className="pt-1 pb-2"/>
             <div className={planInfo}>
                 <span className={styles.planName}>
                     {planOption.name}

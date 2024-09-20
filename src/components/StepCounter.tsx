@@ -31,11 +31,11 @@ interface StepCounterProps {
 
 const StepCounter = ({stepInfo, stepCount} : StepCounterProps) => {
     return (
-        <aside className={styles.aside}>
+        <div className={styles.aside}>
             <ul className="list-unstyled d-flex flex-row flex-md-column justify-content-center justify-content-md-start align-items-md-start gap-3 pt-4">
                 {stepInfo.map((step, key) => <Step key={key + 1} count={key + 1} name={step.name} isCurrent={key === stepCount}/>)}
             </ul>
-        </aside>
+        </div>
     )
 }
 

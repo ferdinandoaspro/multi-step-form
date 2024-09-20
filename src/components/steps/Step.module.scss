@@ -91,7 +91,7 @@ $switch-margin: 0.6rem;
     }
 
     @media (min-width: 992px) {
-        min-width: 140px;
+        min-width: 31%;
     }
 
     &:has( > input[type="radio"]:focus, > input[type="checkbox"]:focus) {
